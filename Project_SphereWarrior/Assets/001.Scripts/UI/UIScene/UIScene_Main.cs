@@ -12,10 +12,19 @@ public class UIScene_Main : UIScene
     {
         if(! base.Init()) return false;
         BindImage(typeof(Images));
+        BindText(typeof(Texts));
+
         BindEvent(GetImage((int)Images.Image_SwipePlace).gameObject, _dragCallback: BeginDrag, _type: Define.UIEventType.BeginDrag);
         BindEvent(GetImage((int)Images.Image_SwipePlace).gameObject, _dragCallback: Drag, _type: Define.UIEventType.Drag);
         BindEvent(GetImage((int)Images.Image_SwipePlace).gameObject, _dragCallback: EndDrag, _type: Define.UIEventType.EndDrag);
+
+        Managers.UI.SceneUI = this;
         return true;
+    }
+
+    public override void RedrawUI()
+    {
+        GetText((int)Texts.Text_Gold).text = $"{Managers.Game.player.gold} Gold";
     }
 
     public void BeginDrag(PointerEventData _data)
@@ -38,5 +47,10 @@ public class UIScene_Main : UIScene
     public enum Images
     {
         Image_SwipePlace
+    }
+
+    public enum Texts
+    {
+        Text_Gold
     }
 }

@@ -11,8 +11,8 @@ public class UIManager
     private int order = 10;                                     // 그려지는 순서 여유 선언
     private int toastOrder = 500;                               // 인스턴트 메세지 그려지는 여유 선언
 
-    public UIScene SceneUI { get { return sceneUI; } }          // SceneUI 프로퍼티 선언
-    public Dictionary<Define.UIType, UIPopup> activePopups = new Dictionary<Define.UIType, UIPopup>();
+    public UIScene SceneUI { get { return sceneUI; } set { sceneUI = value; } }          // SceneUI 프로퍼티 선언
+    public Dictionary<Define.UIPopupType, UIPopup> activePopups = new Dictionary<Define.UIPopupType, UIPopup>();
 
     private Stack<UIPopup> popupStack = new Stack<UIPopup>();   // 팝업 스택
     private Queue<UIToast> toastQueue = new Queue<UIToast>();   // 인스턴트 메세지 스택
@@ -135,7 +135,7 @@ public class UIManager
         if (_pooling) Managers.Pool.CreatePool(go);
         T popup = go.GetOrAddComponent<T>();
         popupStack.Push(popup);
-        activePopups.Add(Util.ParseEnum<Define.UIType>(_name), popup);
+        activePopups.Add(Util.ParseEnum<Define.UIPopupType>(_name), popup);
         go.transform.SetParent(Root.transform);
         return popup;
     }
@@ -163,8 +163,8 @@ public class UIManager
             return;
 
         UIPopup popup = popupStack.Pop();
-        if(activePopups.ContainsKey(Util.ParseEnum<Define.UIType>(popup.GetType().Name)))
-            activePopups.Remove(Util.ParseEnum<Define.UIType>(popup.GetType().Name));
+        if(activePopups.ContainsKey(Util.ParseEnum<Define.UIPopupType>(popup.GetType().Name)))
+            activePopups.Remove(Util.ParseEnum<Define.UIPopupType>(popup.GetType().Name));
         Managers.Resource.Destroy(popup.gameObject);
         popup = null;
         order--;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIScene : UIBase
+public abstract class UIScene : UIBase
 {
     public override bool Init()
     {
@@ -11,8 +11,5 @@ public class UIScene : UIBase
         return true;
     }
 
-    public virtual void RedrawUI()
-    {
-
-    }
+    public abstract void RedrawUI();
 }
