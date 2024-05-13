@@ -6,27 +6,27 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public new Transform transform;
-    public Vector3 testRotateDiection;
+    private Vector3 rotate;
+    public float rotateForce;
 
 
     private void Awake()
     {
-        transform = base.transform.parent;
-        testRotateDiection = new Vector3();
+        rotate = new Vector3();
+        rotate.x = transform.localEulerAngles.x;
+        rotate.y = transform.localEulerAngles.y;
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         Rotation();
     }
 
     private void Rotation()
     {
-        testRotateDiection.y = Managers.Input.swipeDirection.x * Managers.Input.swipeForce;
-        testRotateDiection.x = -Managers.Input.swipeDirection.y * Managers.Input.swipeForce;
-        testRotateDiection.z = 0;
+        rotate.x = math.clamp(rotate.x - (Managers.Input.swipeDirection.y * Managers.Input.swipeForce) * Time.deltaTime * rotateForce, -90f, 90f);
+        rotate.y += Managers.Input.swipeDirection.x * Managers.Input.swipeForce * Time.deltaTime * rotateForce;
 
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x + testRotateDiection.x, transform.eulerAngles.y + testRotateDiection.y, 0);
+        transform.localEulerAngles = rotate;
     }
 }

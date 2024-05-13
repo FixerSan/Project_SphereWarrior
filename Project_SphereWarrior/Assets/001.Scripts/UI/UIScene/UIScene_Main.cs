@@ -6,8 +6,7 @@ using UnityEngine.EventSystems;
 public class UIScene_Main : UIScene
 {
     private Vector2 dragPointOne;
-    
-    public float dragForce;
+   
 
     public override bool Init()
     {
@@ -27,7 +26,7 @@ public class UIScene_Main : UIScene
     public void Drag(PointerEventData _data)
     {
         Managers.Input.swipeDirection = (_data.position - dragPointOne).normalized;
-        Managers.Input.swipeForce = Vector2.Distance(_data.position, dragPointOne) * dragForce;
+        Managers.Input.swipeForce = Vector2.Distance(_data.position, dragPointOne);
         dragPointOne = _data.position;
     }
 
