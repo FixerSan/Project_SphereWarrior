@@ -11,7 +11,8 @@ public class Face : MonoBehaviour
         data = new FaceData(_level);
     }
 
-    public void CollisionFace()
+    
+    public void CollisionFaceEffect()
     {
         Managers.Game.GetGold(data.addGoldValue);
     }

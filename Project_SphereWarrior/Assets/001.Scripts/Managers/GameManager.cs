@@ -15,21 +15,18 @@ public class GameManager : Singleton<GameManager>
 
     public void FixedUpdate()
     {
-        DownSwipeForce();
+        Managers.Input.DownSwipeForce();
     }
+
+    //면과 공이 부딪쳤을 때 실행되는 코드
     public void CollisionFace(Define.FaceType _faceType)
     {
-        player.faces[(int)_faceType].CollisionFace();
+        player.faces[(int)_faceType].CollisionFaceEffect();
     }
-    public void DownSwipeForce()
-    {
-        if (Managers.Input.swipeForce != 0f)
-        {
-            Managers.Input.swipeForce *= swipeForceDownForce ;
-            if (Managers.Input.swipeForce <= 0.1f)
-                Managers.Input.swipeForce = 0f;
-        }
-    }
+
+
+
+    //돈 얻는 코드
     public void GetGold(float _addGoldValue)
     {
         player.gold += _addGoldValue;

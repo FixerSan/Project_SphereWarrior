@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = CalculateReflectDirection(collisionNormal) * speed;
     }
 
+    //충돌 반사 방향 계산
     private Vector3 CalculateReflectDirection(Vector3 _collisionNormalVecter)
     {
         Vector3 nowDir = rb.velocity.normalized;

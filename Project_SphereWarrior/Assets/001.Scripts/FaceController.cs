@@ -10,7 +10,6 @@ public class FaceController : MonoBehaviour
     {
         if(collision.transform.CompareTag("Player"))
         {
-            Debug.Log("¡¢√À");
             Managers.Game.CollisionFace(faceType);
         }
     }

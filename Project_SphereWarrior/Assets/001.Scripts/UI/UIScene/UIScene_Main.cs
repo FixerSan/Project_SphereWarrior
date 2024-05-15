@@ -16,7 +16,6 @@ public class UIScene_Main : UIScene
 
         BindEvent(GetImage((int)Images.Image_SwipePlace).gameObject, _dragCallback: BeginDrag, _type: Define.UIEventType.BeginDrag);
         BindEvent(GetImage((int)Images.Image_SwipePlace).gameObject, _dragCallback: Drag, _type: Define.UIEventType.Drag);
-        BindEvent(GetImage((int)Images.Image_SwipePlace).gameObject, _dragCallback: EndDrag, _type: Define.UIEventType.EndDrag);
 
         Managers.UI.SceneUI = this;
         return true;
@@ -34,14 +33,9 @@ public class UIScene_Main : UIScene
 
     public void Drag(PointerEventData _data)
     {
-        Managers.Input.swipeDirection = (_data.position - dragPointOne).normalized;
-        Managers.Input.swipeForce = Vector2.Distance(_data.position, dragPointOne);
+        Managers.Input.SetSwipeDirection((_data.position - dragPointOne).normalized);
+        Managers.Input.SetSwipeForce(Vector2.Distance(_data.position, dragPointOne));
         dragPointOne = _data.position;
-    }
-
-    public void EndDrag(PointerEventData _data)
-    {
-
     }
 
     public enum Images

@@ -22,10 +22,11 @@ public class CameraController : MonoBehaviour
         Rotation();
     }
 
+    //화면 전환
     private void Rotation()
     {
-        rotate.x = math.clamp(rotate.x - (Managers.Input.swipeDirection.y * Managers.Input.swipeForce) * Time.deltaTime * rotateForce, -90f, 90f);
-        rotate.y += Managers.Input.swipeDirection.x * Managers.Input.swipeForce * Time.deltaTime * rotateForce;
+        rotate.x = math.clamp(rotate.x - (Managers.Input.SwipeDirection.y * Managers.Input.SwipeForce) * Time.deltaTime * rotateForce, -90f, 90f);
+        rotate.y += Managers.Input.SwipeDirection.x * Managers.Input.SwipeForce * Time.deltaTime * rotateForce;
 
         transform.localEulerAngles = rotate;
     }
