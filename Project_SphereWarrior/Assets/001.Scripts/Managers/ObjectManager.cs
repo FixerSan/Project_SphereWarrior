@@ -28,7 +28,7 @@ public class ObjectManager
     private Transform monsterTrans;
     #endregion
 
-    public MonsterController SpawnMonster(int _index, int _hp,  Vector3 _position)
+    public MonsterController SpawnMonster(int _index, float _hp,  Vector3 _position)
     {
         MonsterController monster = Managers.Resource.Instantiate($"Monster_{_index}", MonsterTrans, true).GetComponent<MonsterController>();
         monster.transform.position = _position;
