@@ -10,22 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: Particle
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: Packed Assets
   m_Data:
     m_SerializedData: []
-  m_GUID: 88afc925032f61345b70cd910a8b94da
-  m_SerializeEntries:
-  - m_GUID: 36eb9416bce1e844b8cd8efffabda6fe
-    m_Address: Particle_Ball_Touch.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
+  m_GUID: e0f3fbe808d99924e9d28fd11174819c
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c9cb7405b3b64e240a358f669c116cc9, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 300e8824f644f91429eb4a5bc2437d54, type: 2}
-    - {fileID: 11400000, guid: 1ba4bd1912d56564ea358a5fda5cc541, type: 2}
+    - {fileID: 11400000, guid: b444e71559e644546bf6cc3da05c5b6a, type: 2}
+    - {fileID: 11400000, guid: 0340acfc40f64cd4cbc967798e3d7ab4, type: 2}
