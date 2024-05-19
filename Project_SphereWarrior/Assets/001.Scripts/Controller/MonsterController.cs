@@ -5,7 +5,9 @@ using UnityEngine;
 public class MonsterController : MonoBehaviour
 {
     public Monster monster;
-    public Animator anim;
+    private Animator anim;
+    private Rigidbody rb;
+    private Collider coll;
     public float HP 
     {
         get
@@ -21,19 +23,37 @@ public class MonsterController : MonoBehaviour
         }
     }
     private float hp;
+
+    public float deadMoveForce;
+    public float deadTime;
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
+        coll = GetComponent<Collider>();
     }
 
     public void Init(float _hp)
     {
         hp = _hp;
+        rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
+        coll.enabled = true;
     }
 
     private void Dead()
     {
         hp = 0;
+        rb.isKinematic = false;
+        rb.AddForce(Vector3.down * deadMoveForce, ForceMode.Impulse);
+        coll.enabled = false;
+        StartCoroutine(DeadRoutine());
+    }
+
+    private IEnumerator DeadRoutine()
+    {
+        anim.SetTrigger("Die");
+        yield return new WaitForSeconds(deadTime);
         Managers.Resource.Destroy(gameObject);
     }
 
