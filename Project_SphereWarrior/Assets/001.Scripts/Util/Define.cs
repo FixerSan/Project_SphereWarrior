@@ -33,6 +33,6 @@ public class Define
     
     public enum FaceType
     {
-        FaceOne, FaceTwo, FaceThree, FaceFour, FaceFive, FaceSix
+        FaceOne, FaceTwo, FaceThree, FaceFour, FaceFive, FaceSix, Null
     }
 }

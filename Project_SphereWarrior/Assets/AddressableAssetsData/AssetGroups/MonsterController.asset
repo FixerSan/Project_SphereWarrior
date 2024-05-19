@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: MonsterController
+  m_EditorClassIdentifier: 
+  m_GroupName: MonsterController
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 4ff46214c3756c24eb7e6d2f5b832e1c
+  m_SerializeEntries:
+  - m_GUID: 14b924df69a7c5449af2b24c2db6905e
+    m_Address: Monster_0.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: c9cb7405b3b64e240a358f669c116cc9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b68f5263be824c44595e925cac3765a6, type: 2}
+    - {fileID: 11400000, guid: 9cc33a426c75e3849a18bebc53b57ed0, type: 2}
