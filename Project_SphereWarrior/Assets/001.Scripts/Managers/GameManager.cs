@@ -59,7 +59,7 @@ public class GameManager : Singleton<GameManager>
     {
         if(nowEvent == 0 && player.gold  >= 10)
         {
-            Managers.Object.SpawnMonster(0, 100, Vector3.zero);
+            Managers.Object.SpawnMonster(0, 30, Vector3.zero);
             nowEvent++;
         }
     }

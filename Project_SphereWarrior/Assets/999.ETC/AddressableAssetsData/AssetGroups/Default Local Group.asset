@@ -16,13 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 88afc925032f61345b70cd910a8b94da
-  m_SerializeEntries:
-  - m_GUID: 36eb9416bce1e844b8cd8efffabda6fe
-    m_Address: Particle_Ball_Touch.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - default
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c9cb7405b3b64e240a358f669c116cc9, type: 2}
   m_SchemaSet:

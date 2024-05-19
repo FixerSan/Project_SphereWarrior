@@ -12,11 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: Particle
   m_EditorClassIdentifier: 
-  m_GroupName: Packed Assets
+  m_GroupName: Particle
   m_Data:
     m_SerializedData: []
   m_GUID: e0f3fbe808d99924e9d28fd11174819c
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 36eb9416bce1e844b8cd8efffabda6fe
+    m_Address: Particle_Ball_Touch.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c9cb7405b3b64e240a358f669c116cc9, type: 2}
   m_SchemaSet:

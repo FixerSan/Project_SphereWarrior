@@ -5,6 +5,7 @@ using UnityEngine;
 public class MonsterController : MonoBehaviour
 {
     public Monster monster;
+    public Animator anim;
     public float HP 
     {
         get
@@ -20,8 +21,12 @@ public class MonsterController : MonoBehaviour
         }
     }
     private float hp;
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
 
-    public void Init(int _hp)
+    public void Init(float _hp)
     {
         hp = _hp;
     }
@@ -32,13 +37,20 @@ public class MonsterController : MonoBehaviour
         Managers.Resource.Destroy(gameObject);
     }
 
+    public void Hit(float _damage)
+    {
+        HP -= _damage;
+        anim.SetTrigger("Hit");
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.CompareTag("Player"))
         {
-            HP -= Managers.Game.player.attackForce;
+            Hit(Managers.Game.player.attackForce);
         }
     }
+
 }
 
 public class Monster

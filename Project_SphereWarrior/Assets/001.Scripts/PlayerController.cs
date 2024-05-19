@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = CalculateReflectDirection(collisionNormal) * speed;
         ParticleController particle = Managers.Resource.Instantiate("Particle_Ball_Touch", _pooling: true).GetComponent<ParticleController>();
         particle.transform.position = collision.contacts[0].point;
-        particle.transform.localEulerAngles = collision.contacts[0].normal;
+        particle.transform.LookAt(Vector3.forward);
         particle.Play();
 
     }
