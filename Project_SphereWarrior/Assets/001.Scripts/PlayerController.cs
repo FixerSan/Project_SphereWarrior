@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        rb.AddForce(new Vector3(-3, 4f, 6), ForceMode.Impulse);   
+        rb.AddForce(new Vector3(-3, 5f, 6), ForceMode.Impulse);   
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = CalculateReflectDirection(collisionNormal) * speed;
         ParticleController particle = Managers.Resource.Instantiate("Particle_Ball_Touch", _pooling: true).GetComponent<ParticleController>();
         particle.transform.position = collision.contacts[0].point;
-        particle.transform.LookAt(Vector3.forward);
+        particle.transform.LookAt(collision.contacts[0].normal + collision.contacts[0].point);
         particle.Play();
 
     }
