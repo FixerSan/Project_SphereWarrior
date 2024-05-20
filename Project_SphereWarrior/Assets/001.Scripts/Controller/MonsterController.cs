@@ -37,7 +37,6 @@ public class MonsterController : MonoBehaviour
     {
         hp = _hp;
         rb.isKinematic = true;
-        rb.velocity = Vector3.zero;
         coll.enabled = true;
     }
 

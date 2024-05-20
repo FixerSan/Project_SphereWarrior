@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Face : MonoBehaviour
+public class Face 
 {
     public FaceData data;
 
