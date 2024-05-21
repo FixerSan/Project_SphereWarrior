@@ -38,7 +38,7 @@ public class GameManager : Singleton<GameManager>
     {
         player.gold += _addGoldValue;
         CheckGoldEvent();
-        Managers.UI.SceneUI.RedrawUI();
+        Managers.UI.SceneUI?.RedrawUI();
     }
 
     private Define.FaceType CheckLookingFace()
@@ -59,7 +59,7 @@ public class GameManager : Singleton<GameManager>
     {
         if(nowEvent == 0 && player.gold  >= 10)
         {
-            Managers.Object.SpawnMonster(0, 30f, Vector3.zero);
+            Managers.Grid.SetGrid(_data);
             nowEvent++;
         }
     }

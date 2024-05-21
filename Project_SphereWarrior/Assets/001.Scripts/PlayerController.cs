@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
         ParticleController particle = Managers.Resource.Instantiate("Particle_Ball_Touch", _pooling: true).GetComponent<ParticleController>();
         particle.transform.position = collision.contacts[0].point;
         particle.transform.LookAt(collision.contacts[0].normal + collision.contacts[0].point);
+        particle.transform.SetParent(Managers.Object.ParticleTrans);
         particle.Play();
-
     }
 
     //충돌 반사 방향 계산

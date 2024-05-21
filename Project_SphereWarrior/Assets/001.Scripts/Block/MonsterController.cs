@@ -2,27 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterController : MonoBehaviour
+public class MonsterController : GridObject
 {
     public Monster monster;
     private Animator anim;
     private Rigidbody rb;
     private Collider coll;
-    public float HP 
-    {
-        get
-        {
-            return hp;
-        }
-
-        set
-        {
-            hp = value;
-            if (hp <= 0)
-                Dead();
-        }
-    }
-    private float hp;
 
     public float deadMoveForce;
     public float deadTime;
@@ -33,14 +18,14 @@ public class MonsterController : MonoBehaviour
         coll = GetComponent<Collider>();
     }
 
-    public void Init(float _hp)
+    public override void Init(float _hp)
     {
-        hp = _hp;
+        base.Init(_hp);
         rb.isKinematic = true;
         coll.enabled = true;
     }
 
-    private void Dead()
+    public override void Dead()
     {
         hp = 0;
         rb.isKinematic = false;
@@ -56,7 +41,7 @@ public class MonsterController : MonoBehaviour
         Managers.Resource.Destroy(gameObject);
     }
 
-    public void Hit(float _damage)
+    public override void Hit(float _damage)
     {
         HP -= _damage;
         anim.SetTrigger("Hit");

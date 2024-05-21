@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Define 
 {
+    public static Vector3 gridOffset = new Vector3(-0.8f, -0.8f, -0.8f);
+    public static Vector3 gridScale = new Vector3(0.2f, 0.2f, 0.2f);
     public enum UIEventType
     {
         Click,

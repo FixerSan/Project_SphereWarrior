@@ -10,6 +10,7 @@ public class Managers : Singleton<Managers>
     private PoolManager _pool;
     private InputManager _input;
     private SceneManager _scene;
+    private GridManager _grid;
 
 
     private GameManager _game;
@@ -23,6 +24,8 @@ public class Managers : Singleton<Managers>
     public static PoolManager Pool { get { return Instance?._pool; } }
     public static InputManager Input { get { return Instance?._input; } }
     public static SceneManager Scene { get { return Instance?._scene; } }
+    public static GridManager Grid { get { return Instance?._grid; } }
+
 
     private void Awake()
     {
@@ -38,6 +41,7 @@ public class Managers : Singleton<Managers>
         Instance._pool = new PoolManager();
         Instance._input = new InputManager();
         Instance._scene = new SceneManager();
+        Instance._grid = new GridManager();
 
         Instance._game = GameManager.Instance;
         init = true;
