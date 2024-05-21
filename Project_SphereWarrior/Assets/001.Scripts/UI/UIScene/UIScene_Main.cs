@@ -9,7 +9,11 @@ public class UIScene_Main : UIScene
 {
     private Vector2 dragPointOne;
     private Sequence sequence;
-    private int nowBundle;
+    private RectTransform nowBundled;
+    private int nowBundleIndex = -1;
+
+    [SerializeField ]
+    private float bundleSpeed;
 
 
     public override bool Init()
@@ -57,35 +61,44 @@ public class UIScene_Main : UIScene
     {
         RectTransform bundle = GetObject((int)Objects.Bundle_BallUpgrade).GetComponent<RectTransform>();
 
-        if (nowBundle != (int)Objects.Bundle_BallUpgrade)
+        if (nowBundleIndex != (int)Objects.Bundle_BallUpgrade)
         {
-            CloseAllBundle();
-            OpenBundle(bundle);
-            nowBundle = (int)Objects.Bundle_BallUpgrade;
+            if(nowBundleIndex == -1)
+                OpenBundle(bundle);
+
+            else
+                ChangeBundle(bundle);
+            nowBundleIndex = (int)Objects.Bundle_BallUpgrade;
+            return;
         } 
 
         else
         {
             CloseBundle(bundle);
-            nowBundle = -1;
+            nowBundleIndex = -1;
         }
     }
+
 
     private void OnClick_Shop()
     {
         RectTransform bundle = GetObject((int)Objects.Bundle_Shop).GetComponent<RectTransform>();
 
-        if (nowBundle != (int)Objects.Bundle_Shop)
+        if (nowBundleIndex != (int)Objects.Bundle_Shop)
         {
-            CloseAllBundle();
-            OpenBundle(bundle);
-            nowBundle = (int)Objects.Bundle_Shop;
+            if (nowBundleIndex == -1)
+                OpenBundle(bundle);
+
+            else
+                ChangeBundle(bundle);
+            nowBundleIndex = (int)Objects.Bundle_Shop;
+            return;
         }
 
         else
         {
             CloseBundle(bundle);
-            nowBundle = -1;
+            nowBundleIndex = -1;
         }
     }
 
@@ -93,17 +106,21 @@ public class UIScene_Main : UIScene
     {
         RectTransform bundle = GetObject((int)Objects.Bundle_Skill).GetComponent<RectTransform>();
 
-        if (nowBundle != (int)Objects.Bundle_Skill)
+        if (nowBundleIndex != (int)Objects.Bundle_Skill)
         {
-            CloseAllBundle();
-            OpenBundle(bundle);
-            nowBundle = (int)Objects.Bundle_Skill;
+            if (nowBundleIndex == -1)
+                OpenBundle(bundle);
+
+            else
+                ChangeBundle(bundle);
+            nowBundleIndex = (int)Objects.Bundle_Skill;
+            return;
         }
 
         else
         {
             CloseBundle(bundle);
-            nowBundle = -1;
+            nowBundleIndex = -1;
         }
     }
 
@@ -111,17 +128,21 @@ public class UIScene_Main : UIScene
     {
         RectTransform bundle = GetObject((int)Objects.Bundle_Soul).GetComponent<RectTransform>();
 
-        if (nowBundle != (int)Objects.Bundle_Soul)
+        if (nowBundleIndex != (int)Objects.Bundle_Soul)
         {
-            CloseAllBundle();
-            OpenBundle(bundle);
-            nowBundle = (int)Objects.Bundle_Soul;
+            if (nowBundleIndex == -1)
+                OpenBundle(bundle);
+
+            else
+                ChangeBundle(bundle);
+            nowBundleIndex = (int)Objects.Bundle_Soul;
+            return;
         }
 
         else
         {
             CloseBundle(bundle);
-            nowBundle = -1;
+            nowBundleIndex = -1;
         }
     }
 
@@ -129,36 +150,50 @@ public class UIScene_Main : UIScene
     {
         RectTransform bundle = GetObject((int)Objects.Bundle_SquareUpgrade).GetComponent<RectTransform>();
 
-        if (nowBundle != (int)Objects.Bundle_SquareUpgrade)
+        if (nowBundleIndex != (int)Objects.Bundle_SquareUpgrade)
         {
-            CloseAllBundle();
-            OpenBundle(bundle);
-            nowBundle = (int)Objects.Bundle_SquareUpgrade;
+            if (nowBundleIndex == -1)
+                OpenBundle(bundle);
+
+            else
+                ChangeBundle(bundle);
+            nowBundleIndex = (int)Objects.Bundle_SquareUpgrade;
+            return;
         }
 
         else
         {
             CloseBundle(bundle);
-            nowBundle = -1;
+            nowBundleIndex = -1;
         }
     }
 
     private void OpenBundle(RectTransform _bundle)
     {
+        nowBundled = _bundle;
         _bundle.position = GetObject((int)Objects.Trans_BundleStartTweeing).transform.position;
         _bundle.gameObject.SetActive(true);
         DOTween.Kill($"{nameof(CloseBundle)}");
         sequence = DOTween.Sequence().SetId($"{nameof(OpenBundle)}");
-        sequence.Join(_bundle.DOMove(GetObject((int)Objects.Trans_BundleEndTweeing).transform.position, 1));
+        sequence.Join(_bundle.DOMove(GetObject((int)Objects.Trans_BundleEndTweeing).transform.position, bundleSpeed));
         sequence.AppendCallback(() => { sequence = null; });
         sequence.Play();
+    }
+
+    private void ChangeBundle(RectTransform _bundle)
+    {
+        if(nowBundled != null)
+            nowBundled.gameObject.SetActive(false);
+        nowBundled = _bundle;
+        _bundle.transform.position = GetObject((int)Objects.Trans_BundleEndTweeing).transform.position;
+        _bundle.gameObject.SetActive(true);
     }
 
     private void CloseBundle(RectTransform _bundle)
     {
         DOTween.Kill($"{nameof(OpenBundle)}");
         sequence = DOTween.Sequence().SetId($"{nameof(CloseBundle)}");
-        sequence.Join(_bundle.DOMove(GetObject((int)Objects.Trans_BundleStartTweeing).transform.position, 1));
+        sequence.Join(_bundle.DOMove(GetObject((int)Objects.Trans_BundleStartTweeing).transform.position, bundleSpeed));
         sequence.AppendCallback(() => { _bundle.gameObject.SetActive(false); sequence = null; });
         sequence.Play();
     }
