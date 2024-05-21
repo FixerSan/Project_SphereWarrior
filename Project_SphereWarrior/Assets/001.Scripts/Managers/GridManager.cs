@@ -41,7 +41,7 @@ public class GridManager
 
         if (colliders.Length >= 2)
         {
-            Debug.LogError($"{_x} , {_y} , {_z} 좌표의 오브젝트가 겹칩니다. 위치를 다시 설정해주세요");
+            Debug.LogError($"{new Vector3(_x, _y, _z) * Define.gridScale.x * 2 + Define.gridOffset} 좌표의 오브젝트가 겹칩니다. 위치를 다시 설정해주세요");
             return;
         }
 
@@ -96,6 +96,7 @@ public class Grid
 public class LevelData
 {
     public int index;
+    public string stageInfo;
     public int[,,] indexes = new int[5, 5, 5];
     public float[,,] hpDatas = new float[5, 5, 5];
 }

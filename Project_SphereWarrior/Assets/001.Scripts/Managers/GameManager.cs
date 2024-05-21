@@ -59,9 +59,20 @@ public class GameManager : Singleton<GameManager>
     {
         if(nowEvent == 0 && player.gold  >= 10)
         {
-            Managers.Grid.SetGrid(_data);
+            LevelData data = Managers.Data.GetLevelData(0);
+            Managers.Grid.SetGrid(data);
             nowEvent++;
         }
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        Managers.Data.SaveLevelData();
+    }
+
+    private void OnApplicationQuit()
+    {
+        Managers.Data.SaveLevelData();
     }
 }
 

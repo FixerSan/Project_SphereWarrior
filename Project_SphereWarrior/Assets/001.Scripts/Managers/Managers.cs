@@ -11,6 +11,7 @@ public class Managers : Singleton<Managers>
     private InputManager _input;
     private SceneManager _scene;
     private GridManager _grid;
+    private DataManager _data;
 
 
     private GameManager _game;
@@ -25,6 +26,7 @@ public class Managers : Singleton<Managers>
     public static InputManager Input { get { return Instance?._input; } }
     public static SceneManager Scene { get { return Instance?._scene; } }
     public static GridManager Grid { get { return Instance?._grid; } }
+    public static DataManager Data { get { return Instance?._data; } }
 
 
     private void Awake()
@@ -42,6 +44,7 @@ public class Managers : Singleton<Managers>
         Instance._input = new InputManager();
         Instance._scene = new SceneManager();
         Instance._grid = new GridManager();
+        Instance._data = new DataManager();
 
         Instance._game = GameManager.Instance;
         init = true;
