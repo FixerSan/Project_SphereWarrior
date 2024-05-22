@@ -21,12 +21,14 @@ public class GridManager
     public void SetGrid(LevelData _data)
     {
         data = _data;
+        grid.baseHP = data.baseHP;
         LoopGridLength(SetGrid);
     }
 
     private void SetGrid(int _x, int _y, int _z)
     {
-        Managers.Object.SpawnGridObject(data.indexes[_x, _y, _z], data.hpDatas[_x, _y, _z], _x, _y, _z);
+        if (data.indexes[_x, _y, _z] == -1) return;
+        Managers.Object.SpawnGridObject(data.indexes[_x, _y, _z], grid.baseHP, _x, _y, _z);
     }
 
 
@@ -50,7 +52,7 @@ public class GridManager
         grid.gridObjectArray[_x,_y,_z] = colliders[0].GetComponent<GridObject>();
     }
 
-    public LevelData CreateLevelData()
+    public LevelData CreateLevelData(float _baseHP)
     {
         for (int x = 0; x < grid.gridObjectArray.GetLength(0); x++)
         {
@@ -65,10 +67,10 @@ public class GridManager
                     }
 
                     data.indexes[x, y, z] = grid.gridObjectArray[x, y, z].index;
-                    data.hpDatas[x, y, z] = grid.gridObjectArray[x, y, z].HP;
                 }
             }
         }
+        data.baseHP = _baseHP;
         return data;
     }
 
@@ -90,6 +92,7 @@ public class GridManager
 public class Grid
 {
     public GridObject[,,] gridObjectArray = new GridObject[5,5,5];
+    public float baseHP;
 }
 
 [System.Serializable]
@@ -97,6 +100,6 @@ public class LevelData
 {
     public int index;
     public string stageInfo;
+    public float baseHP;
     public int[,,] indexes = new int[5, 5, 5];
-    public float[,,] hpDatas = new float[5, 5, 5];
 }

@@ -3,16 +3,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class DataManager 
 {
     public Dictionary<int, LevelData> levelDatas = new Dictionary<int, LevelData>();
 
+    public void LoadData()
+    {
+        LoadLevelData();
+    }
+    
+
     public void LoadLevelData()
     {
         TextAsset text = Managers.Resource.Load<TextAsset>("LevelData");
-        LevelDatas datas = JsonUtility.FromJson<LevelDatas>(text.text);
+        if (text == null) return;
+        LevelDatas datas = JsonConvert.DeserializeObject<LevelDatas>(text.text);
         for (int i = 0; i < datas.datas.Length; i++)
             levelDatas.Add(datas.datas[i].index, datas.datas[i]);
     }
@@ -30,7 +38,14 @@ public class DataManager
             loopCount++;
         }
 
-        string dataJson = JsonUtility.ToJson(datas, true);
+
+
+        string dataJson = JsonConvert.SerializeObject(datas.datas[0].indexes);
+        Debug.Log(dataJson);
+        dataJson = JsonConvert.SerializeObject(datas.datas[0]);
+        Debug.Log(dataJson);
+        dataJson = JsonConvert.SerializeObject(datas);
+        Debug.Log(dataJson);
         string path = Path.Combine(Application.dataPath, "008.Datas/LevelData.json");
 
         File.WriteAllText(path, dataJson);
@@ -48,4 +63,9 @@ public class DataManager
 public class LevelDatas
 {
     public LevelData[] datas;
+}
+
+public class TestClass
+{
+    public int[,,] testInt = new int[10,10,10];
 }

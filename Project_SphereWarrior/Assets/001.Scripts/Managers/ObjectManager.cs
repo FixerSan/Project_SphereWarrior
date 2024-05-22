@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class ObjectManager
 {
     #region 오브젝트 참조
-    public HashSet<MonsterController> monsters = new HashSet<MonsterController>();
+    public HashSet<GridObject> gridObjects = new HashSet<GridObject>();
     #endregion
 
     #region Trans
@@ -43,23 +43,13 @@ public class ObjectManager
     }
     private Transform particleTrans;
 
-
-    public MonsterController SpawnMonster(int _index, float _hp,  int _gridIndexX, int _gridIndexY, int _gridIndexZ)
-    {
-        MonsterController monster = Managers.Resource.Instantiate($"Monster_{_index}", MonsterTrans, true).GetComponent<MonsterController>();
-        monster.transform.position = (new Vector3(_gridIndexX, _gridIndexY, _gridIndexZ) * Define.gridScale.x * 2) + Define.gridOffset;
-        monster.transform.localScale = Define.gridScale;
-        monster.Init(_hp);
-        monsters.Add(monster);
-        return monster;
-    }
-
-    public GridObject SpawnGridObject(int _index, float _hp, int _gridIndexX, int _gridIndexY, int _gridIndexZ)
+    public GridObject SpawnGridObject(int _index, float _baseHP, int _gridIndexX, int _gridIndexY, int _gridIndexZ)
     {
         GridObject block = Managers.Resource.Instantiate($"Block_{_index}", MonsterTrans, true).GetComponent<GridObject>();
         block.transform.position = (new Vector3(_gridIndexX, _gridIndexY, _gridIndexZ) * Define.gridScale.x * 2) + Define.gridOffset;
         block.transform.localScale = Define.gridScale;
-        block.Init(_hp);
+        block.Init(_baseHP);
+        gridObjects.Add(block);
         Managers.Grid.EnGrid(block, _gridIndexX, _gridIndexY, _gridIndexZ);
         return block;
     }

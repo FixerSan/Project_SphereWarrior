@@ -19,7 +19,10 @@ public class GameManager : Singleton<GameManager>
     public void Awake()
     {
         player = new Player();
-        Managers.Resource.LoadAllAsync<UnityEngine.Object>("default");
+        Managers.Resource.LoadAllAsync<UnityEngine.Object>("default", _completeCallback: () => 
+        {
+            Managers.Data.LoadData();
+        });
     }
 
     public void FixedUpdate()
@@ -63,16 +66,6 @@ public class GameManager : Singleton<GameManager>
             Managers.Grid.SetGrid(data);
             nowEvent++;
         }
-    }
-
-    private void OnApplicationPause(bool pause)
-    {
-        Managers.Data.SaveLevelData();
-    }
-
-    private void OnApplicationQuit()
-    {
-        Managers.Data.SaveLevelData();
     }
 }
 
