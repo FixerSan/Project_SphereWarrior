@@ -40,12 +40,7 @@ public class DataManager
 
 
 
-        string dataJson = JsonConvert.SerializeObject(datas.datas[0].indexes);
-        Debug.Log(dataJson);
-        dataJson = JsonConvert.SerializeObject(datas.datas[0]);
-        Debug.Log(dataJson);
-        dataJson = JsonConvert.SerializeObject(datas);
-        Debug.Log(dataJson);
+        string dataJson = JsonConvert.SerializeObject(datas);
         string path = Path.Combine(Application.dataPath, "008.Datas/LevelData.json");
 
         File.WriteAllText(path, dataJson);
