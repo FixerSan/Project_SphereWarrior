@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//TODO::나중에 추상으로 만들거임
-public class Face 
+public abstract class Face 
 {
     public FaceData data;
 
@@ -13,21 +12,38 @@ public class Face
     }
 
 
-    //TODO::추상 함수 할 거임
-    public void CollisionFaceEffect()
+    public virtual void CollisionFaceEffect()
     {
         Managers.Game.GetGold(data.addGoldValue);
     }
 }
 
-public class FaceData
+namespace Faces
 {
-    public FaceData(int _level)
+    public class Default : Face
     {
-        level = _level;
-        addGoldValue = _level * 1.5f;
+        public Default(int _level) : base(_level)
+        {
+
+        }
+
+        public override void CollisionFaceEffect()
+        {
+            base.CollisionFaceEffect();
+        }
     }
 
-    public int level;
-    public float addGoldValue;
+    public class TestFace : Face
+    {
+        public TestFace(int _level) : base(_level)
+        {
+
+        }
+
+        public override void CollisionFaceEffect()
+        {
+            base.CollisionFaceEffect();
+            Debug.Log("WallEffect Test");
+        }
+    }
 }

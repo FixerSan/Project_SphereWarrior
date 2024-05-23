@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class FaceController : MonoBehaviour
 {
-    public Define.FaceType faceType;
+    public Define.Face face;
+
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.CompareTag("Player"))
+        if (collision.transform.CompareTag("Player"))
         {
-            Managers.Game.CollisionFace(faceType);
+            Managers.Game.CollisionFace(face);
         }
     }
 }

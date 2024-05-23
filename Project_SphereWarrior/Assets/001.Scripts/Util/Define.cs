@@ -33,8 +33,13 @@ public class Define
         Scene_Test, Scene_TestBoss
     }
     
-    public enum FaceType
+    public enum Face
     {
         FaceOne, FaceTwo, FaceThree, FaceFour, FaceFive, FaceSix, Null
+    }
+
+    public enum FaceType
+    {
+        Default, Test
     }
 }

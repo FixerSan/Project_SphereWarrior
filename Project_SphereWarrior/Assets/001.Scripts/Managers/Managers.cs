@@ -12,7 +12,7 @@ public class Managers : Singleton<Managers>
     private SceneManager _scene;
     private GridManager _grid;
     private DataManager _data;
-
+    private FaceManager _face;
 
     private GameManager _game;
 
@@ -27,6 +27,7 @@ public class Managers : Singleton<Managers>
     public static SceneManager Scene { get { return Instance?._scene; } }
     public static GridManager Grid { get { return Instance?._grid; } }
     public static DataManager Data { get { return Instance?._data; } }
+    public static FaceManager Face { get { return Instance?._face; } }
 
 
     private void Awake()
@@ -45,6 +46,7 @@ public class Managers : Singleton<Managers>
         Instance._scene = new SceneManager();
         Instance._grid = new GridManager();
         Instance._data = new DataManager();
+        Instance._face = new FaceManager();
 
         Instance._game = GameManager.Instance;
         init = true;

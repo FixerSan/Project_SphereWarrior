@@ -8,13 +8,6 @@ public class GameManager : Singleton<GameManager>
     public float swipeForceDownForce = 0.75f;
     public int nowEvent = 0;
 
-    public Define.FaceType LookingFace 
-    {
-        get
-        {
-            return CheckLookingFace();
-        }
-    }
 
     public void Awake()
     {
@@ -22,6 +15,7 @@ public class GameManager : Singleton<GameManager>
         Managers.Resource.LoadAllAsync<UnityEngine.Object>("default", _completeCallback: () => 
         {
             Managers.Data.LoadData();
+            Managers.Face.InitFace();
         });
     }
 
@@ -31,9 +25,9 @@ public class GameManager : Singleton<GameManager>
     }
 
     //면과 공이 부딪쳤을 때 실행되는 코드
-    public void CollisionFace(Define.FaceType _faceType)
+    public void CollisionFace(Define.Face _face)
     {
-        player.faces[(int)_faceType].CollisionFaceEffect();
+        Managers.Face.faces[(int)_face].CollisionFaceEffect();
     }
 
     //돈 얻는 코드
@@ -42,19 +36,6 @@ public class GameManager : Singleton<GameManager>
         player.gold += _addGoldValue;
         CheckGoldEvent();
         Managers.UI.SceneUI?.RedrawUI();
-    }
-
-    private Define.FaceType CheckLookingFace()
-    {
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        if (Physics.Raycast(ray, out RaycastHit hitData, 10, LayerMask.GetMask("Face"), QueryTriggerInteraction.Ignore))
-        {
-            FaceController face = hitData.transform.GetComponent<FaceController>();
-            if (face != null)
-                return face.faceType;
-
-        }
-        return Define.FaceType.Null;
     }
 
     //임시로 만든 몬스터 테스트용 이벤트
@@ -72,20 +53,26 @@ public class GameManager : Singleton<GameManager>
 [System.Serializable]
 public class Player
 {
-    public Face[] faces;
     public float gold;
     public float attackForce;
 
+    public Define.FaceType faceOneType = Define.FaceType.Default;
+    public Define.FaceType faceTwoType = Define.FaceType.Default;
+    public Define.FaceType faceThreeType = Define.FaceType.Default;
+    public Define.FaceType faceFourType = Define.FaceType.Test;
+    public Define.FaceType faceFiveType= Define.FaceType.Test;
+    public Define.FaceType faceSixType = Define.FaceType.Test;
+
+    public int faceOneLevel = 1;
+    public int faceTwoLevel = 1;
+    public int faceThreeLevel = 1;
+    public int faceFourLevel = 1;
+    public int faceFiveLevel = 1;
+    public int faceSixLevel = 1;
+
+
     public Player()
     {
-        faces = new Face[6];
-        faces[(int)Define.FaceType.FaceOne] = new Face(1);
-        faces[(int)Define.FaceType.FaceTwo] = new Face(1);
-        faces[(int)Define.FaceType.FaceThree] = new Face(1);
-        faces[(int)Define.FaceType.FaceFour] = new Face(1);
-        faces[(int)Define.FaceType.FaceFive] = new Face(1);
-        faces[(int)Define.FaceType.FaceSix] = new Face(1);
-
         gold = 0f;
         attackForce = 5;
     }

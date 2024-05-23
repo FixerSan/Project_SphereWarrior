@@ -364,6 +364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 87231886}
   speed: 3
+  direction: {x: 1, y: 0, z: 0}
 --- !u!4 &87231888
 Transform:
   m_ObjectHideFlags: 0
@@ -1172,7 +1173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53aeb4f505d11447b0010fcdc903ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceType: 4
+  face: 4
 --- !u!65 &346472908
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1220,7 +1221,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,7 +1731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53aeb4f505d11447b0010fcdc903ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceType: 5
+  face: 5
 --- !u!65 &688502679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1778,7 +1779,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &694245102
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,7 +2223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53aeb4f505d11447b0010fcdc903ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceType: 0
+  face: 0
 --- !u!65 &936557094
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2270,7 +2271,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &1021485872
 GameObject:
   m_ObjectHideFlags: 0
@@ -2455,7 +2456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53aeb4f505d11447b0010fcdc903ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceType: 3
+  face: 3
 --- !u!65 &1082062442
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2503,7 +2504,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &1094506816
 GameObject:
   m_ObjectHideFlags: 0
@@ -3074,7 +3075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53aeb4f505d11447b0010fcdc903ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceType: 2
+  face: 2
 --- !u!65 &1411250273
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3122,7 +3123,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &1436383601
 GameObject:
   m_ObjectHideFlags: 0
@@ -3723,7 +3724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a53aeb4f505d11447b0010fcdc903ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceType: 1
+  face: 1
 --- !u!65 &1659864398
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3771,7 +3772,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &1677399162
 GameObject:
   m_ObjectHideFlags: 0

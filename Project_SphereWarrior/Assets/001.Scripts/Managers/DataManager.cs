@@ -64,3 +64,15 @@ public class TestClass
 {
     public int[,,] testInt = new int[10,10,10];
 }
+
+public class FaceData
+{
+    public FaceData(int _level)
+    {
+        level = _level;
+        addGoldValue = _level * 1.5f;
+    }
+
+    public int level;
+    public float addGoldValue;
+}
