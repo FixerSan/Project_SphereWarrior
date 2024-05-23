@@ -29,6 +29,7 @@ public class GridManager
     {
         if (data.indexes[_x, _y, _z] == -1) return;
         Managers.Object.SpawnGridObject(data.indexes[_x, _y, _z], grid.baseHP, _x, _y, _z);
+        Managers.Ball.MoveToEmptyGrid();
     }
 
 
@@ -50,6 +51,35 @@ public class GridManager
         if (colliders.Length == 0) return;
 
         grid.gridObjectArray[_x,_y,_z] = colliders[0].GetComponent<GridObject>();
+    }
+
+    public Vector3 GridToWorldPos(int _x, int _y, int _z)
+    {
+        return new Vector3(_x, _y, _z) * Define.gridScale.x * 2 + Define.gridOffset;
+    }
+
+    public Vector3 FindNearEmptyGridPos(Vector3 _target)
+    {
+        Vector3 nearEmptyGridPos = new Vector3(1000, 1000, 1000);
+        float nowDistance;
+
+        for (int x = 0; x < grid.gridObjectArray.GetLength(0); x++)
+        {
+            for (int y = 0; y < grid.gridObjectArray.GetLength(0); y++)
+            {
+                for (int z = 0; z < grid.gridObjectArray.GetLength(0); z++)
+                {
+                    if (grid.gridObjectArray[x, y, z] == null)
+                    {
+                        nowDistance = Vector3.Distance(_target, GridToWorldPos(x, y, z));
+                        if (Vector3.Distance(_target, nearEmptyGridPos) > nowDistance)
+                            nearEmptyGridPos = GridToWorldPos(x, y, z);
+                        continue;
+                    }
+                }
+            }
+        }
+        return nearEmptyGridPos;
     }
 
     public LevelData CreateLevelData(float _baseHP)

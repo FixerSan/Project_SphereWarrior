@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
         {
             Managers.Data.LoadData();
             Managers.Face.InitFace();
+            Managers.Ball.CreateBall(Define.BallType.Default);
         });
     }
 
@@ -70,11 +71,14 @@ public class Player
     public int faceFiveLevel = 1;
     public int faceSixLevel = 1;
 
+    public Dictionary<Define.BallType, float> ballSpeeds = new Dictionary<Define.BallType, float>();
+
 
     public Player()
     {
         gold = 0f;
         attackForce = 5;
+        ballSpeeds.Add(Define.BallType.Default, 3);
     }
 }
 

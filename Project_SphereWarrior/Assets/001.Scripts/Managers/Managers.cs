@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using UnityEngine;
 
 public class Managers : Singleton<Managers>
@@ -13,6 +14,7 @@ public class Managers : Singleton<Managers>
     private GridManager _grid;
     private DataManager _data;
     private FaceManager _face;
+    private BallManager _ball;
 
     private GameManager _game;
 
@@ -28,6 +30,7 @@ public class Managers : Singleton<Managers>
     public static GridManager Grid { get { return Instance?._grid; } }
     public static DataManager Data { get { return Instance?._data; } }
     public static FaceManager Face { get { return Instance?._face; } }
+    public static BallManager Ball { get { return Instance?._ball; } }
 
 
     private void Awake()
@@ -47,6 +50,7 @@ public class Managers : Singleton<Managers>
         Instance._grid = new GridManager();
         Instance._data = new DataManager();
         Instance._face = new FaceManager();
+        Instance._ball = new BallManager();
 
         Instance._game = GameManager.Instance;
         init = true;

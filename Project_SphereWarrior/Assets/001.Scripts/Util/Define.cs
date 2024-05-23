@@ -42,4 +42,9 @@ public class Define
     {
         Default, Test
     }
+
+    public enum BallType
+    {
+        Default
+    }
 }
