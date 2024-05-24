@@ -43,7 +43,6 @@ namespace Faces
         public override void CollisionFaceEffect()
         {
             base.CollisionFaceEffect();
-            Debug.Log("WallEffect Test");
         }
     }
 }
