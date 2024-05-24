@@ -5,12 +5,14 @@ using UnityEngine;
 public class MonsterController : GridObject
 {
     public Monster monster;
+    public Define.MonsterType type;
     private Animator anim;
     private Rigidbody rb;
     private Collider coll;
 
     public float deadMoveForce;
     public float deadTime;
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -18,9 +20,10 @@ public class MonsterController : GridObject
         coll = GetComponent<Collider>();
     }
 
-    public override void Init(float _hp)
+    public void Init(float _hp, Define.MonsterType _monster)
     {
         base.Init(_hp);
+        type = _monster;
         rb.isKinematic = true;
         coll.enabled = true;
     }
@@ -31,6 +34,7 @@ public class MonsterController : GridObject
         rb.isKinematic = false;
         rb.AddForce(Vector3.down * deadMoveForce, ForceMode.Impulse);
         coll.enabled = false;
+        Managers.Game.world.KillMonster(this);
         StartCoroutine(DeadRoutine());
     }
 

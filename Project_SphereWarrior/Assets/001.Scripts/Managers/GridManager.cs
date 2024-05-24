@@ -10,6 +10,7 @@ public class GridManager
 
     public void EnGrid(GridObject _gridObject, int _x, int _y, int _z)
     {
+        if (_gridObject == null) return;
         grid.gridObjectArray[_x, _y, _z] = _gridObject;
         _gridObject.SetGridIndex(_x, _y, _z);
     }
@@ -18,6 +19,7 @@ public class GridManager
     {
         grid.gridObjectArray[_gridObject.gridIndexX, _gridObject.gridIndexY, _gridObject.gridIndexZ] = null;
     }
+
     public void SetGrid(LevelData _data)
     {
         data = _data;
@@ -58,7 +60,7 @@ public class GridManager
         return new Vector3(_x, _y, _z) * Define.gridScale.x * 2 + Define.gridOffset;
     }
 
-    public Vector3 FindNearEmptyGridPos(Vector3 _target)
+    public Vector3 FindNearEmptyGridPos (Vector3 _target)
     {
         Vector3 nearEmptyGridPos = new Vector3(1000, 1000, 1000);
         float nowDistance;
@@ -80,6 +82,33 @@ public class GridManager
             }
         }
         return nearEmptyGridPos;
+    }
+
+    //비어있는 랜덤 그리드에 넣기
+    public Vector3 EnGridRandomEmptyGrid(GridObject _monsterController)
+    {
+        int x = 0, y = 0, z = 0;
+        bool isNull = false;
+
+        while (!isNull)
+        {
+            x = UnityEngine.Random.Range(0, grid.gridObjectArray.GetLength(0));
+            y = UnityEngine.Random.Range(0, grid.gridObjectArray.GetLength(1));
+            z = UnityEngine.Random.Range(0, grid.gridObjectArray.GetLength(2));
+
+            if(grid.gridObjectArray[x, y, z] == null)
+            {
+                Collider[] colliders = Physics.OverlapBox(GridToWorldPos(x, y, z), Define.gridScale / 2);
+                if(colliders.Length == 0)
+                {
+                    isNull = true;
+                    break;
+                }
+            }
+        }
+
+        EnGrid(_monsterController, x, y, z);
+        return GridToWorldPos(x, y, z);
     }
 
     public LevelData CreateLevelData(float _baseHP)

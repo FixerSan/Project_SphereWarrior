@@ -9,6 +9,7 @@ public class ObjectManager
 {
     #region 오브젝트 참조
     public HashSet<GridObject> gridObjects = new HashSet<GridObject>();
+    public HashSet<MonsterController> monsters = new HashSet<MonsterController>();
     #endregion
 
     #region Trans
@@ -52,5 +53,20 @@ public class ObjectManager
         gridObjects.Add(block);
         Managers.Grid.EnGrid(block, _gridIndexX, _gridIndexY, _gridIndexZ);
         return block;
+    }
+
+    public MonsterController SpawnMonster(Define.WorldTheme _themeType, Define.MonsterType _monsterType)
+    {
+        MonsterController monster= Managers.Resource.Instantiate($"Monster_{_themeType}_{_monsterType}", monsterTrans, true).GetComponent<MonsterController>();
+        monster.transform.position = Managers.Grid.EnGridRandomEmptyGrid(monster);
+        monster.transform.localScale = Define.gridScale;
+        monster.Init(Define.BaseMonsterHP * Managers.Game.world.worldLevel, _monsterType);
+        monsters.Add(monster);
+        return monster;
+    }
+
+    public void DespawnMonster(MonsterController _monster)
+    {
+        monsters.Remove(_monster);
     }
 }
