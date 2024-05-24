@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BallManager
 {
@@ -41,6 +42,7 @@ public class BallManager
         Ball ball = Managers.Resource.Instantiate($"Ball_{_ballType}", BallTrans, true).GetComponent<Ball>();
         if (!balls.ContainsKey(_ballType))
             balls.Add(_ballType, new HashSet<Ball>());
+        ball.transform.position = Managers.Grid.EnGridRandomEmptyGrid(null);
         balls[_ballType].Add(ball);
         ball.Init(Managers.Game.player.ballSpeeds[_ballType]);
     }
