@@ -16,7 +16,25 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 88afc925032f61345b70cd910a8b94da
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 885532ed6e30054429af035fe305ca63
+    m_Address: Monster_Default_Default.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6c23f6cdc59a3745be321accebbb69e
+    m_Address: Monster_Default_Cash.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7d39496163764444086196f302e0bc67
+    m_Address: Monster_Default_Gold.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: c9cb7405b3b64e240a358f669c116cc9, type: 2}
   m_SchemaSet:
