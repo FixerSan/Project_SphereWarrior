@@ -31,19 +31,22 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Vector3 collisionNormal = collision.contacts[0].normal;
-        direction = CalculateReflectDirection(collisionNormal);
-        ParticleController particle = Managers.Resource.Instantiate("Particle_Ball_Touch", _pooling: true).GetComponent<ParticleController>();
-        particle.transform.position = collision.contacts[0].point;
-        particle.transform.LookAt(collision.contacts[0].normal + collision.contacts[0].point);
-        particle.transform.SetParent(Managers.Object.ParticleTrans);
-        particle.Play();
+        if (collision.transform.CompareTag("Face") || collision.transform.CompareTag("Monster"))
+        {
+            Vector3 collisionNormal = collision.contacts[0].normal;
+            direction = CalculateReflectDirection(collisionNormal);
+            ParticleController particle = Managers.Resource.Instantiate("Particle_Ball_Touch", _pooling: true).GetComponent<ParticleController>();
+            particle.transform.position = collision.contacts[0].point;
+            particle.transform.LookAt(collision.contacts[0].normal + collision.contacts[0].point);
+            particle.transform.SetParent(Managers.Object.ParticleTrans);
+            particle.Play();
+        }
     }
 
     //충돌 반사 방향 계산
     private Vector3 CalculateReflectDirection(Vector3 _collisionNormalVecter)
     {
-        Vector3 nowDir = rb.velocity;
+        Vector3 nowDir = direction;
         Vector3 reflectDir = Vector3.Reflect(nowDir, _collisionNormalVecter);
         return reflectDir;
     }

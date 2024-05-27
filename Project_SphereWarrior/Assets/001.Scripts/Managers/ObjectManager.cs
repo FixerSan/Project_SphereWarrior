@@ -67,6 +67,7 @@ public class ObjectManager
 
     public void DespawnMonster(MonsterController _monster)
     {
+        Managers.Grid.DeGrid(_monster);
         monsters.Remove(_monster);
     }
 }

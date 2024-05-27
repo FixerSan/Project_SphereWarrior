@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using static UnityEditor.AddressableAssets.Build.Layout.BuildLayout;
-
 public class UIScene_Main : UIScene
 {
     private Vector2 dragPointOne;

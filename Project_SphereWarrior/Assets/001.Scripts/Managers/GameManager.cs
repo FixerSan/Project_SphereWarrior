@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Awake()
     {
+        Screen.SetResolution(1080, 2400, true);
         Managers.Resource.LoadAllAsync<UnityEngine.Object>("default", _completeCallback: () => 
         {
             player = new Player(); //Todo::나중에 저장된 녀석 불러오는 코드로 수정
