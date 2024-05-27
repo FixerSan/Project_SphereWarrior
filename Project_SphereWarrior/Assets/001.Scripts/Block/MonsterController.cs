@@ -17,7 +17,7 @@ public class MonsterController : GridObject
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        coll = GetComponent<Collider>();
+        coll = Util.FindChild<Collider>(gameObject, "Collider" , true);
     }
 
     public void Init(float _hp, Define.MonsterType _monster)
@@ -55,7 +55,7 @@ public class MonsterController : GridObject
     {
         if(collision.transform.CompareTag("Player"))
         {
-            Hit(Managers.Game.player.attackForce);
+            Hit(Util.CriticalCheck(Managers.Game.player.currentBallDamage));
         }
     }
 

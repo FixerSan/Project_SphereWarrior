@@ -19,7 +19,7 @@ public class Ball : MonoBehaviour
     private void Update()
     {
         if (!init) return;
-        rb.velocity = direction * speed;
+        rb.velocity = direction.normalized * Managers.Game.player.currentBallSpeed;
     }
 
     public void SetRandomDirection()
@@ -27,8 +27,6 @@ public class Ball : MonoBehaviour
         direction.x = Random.Range(0, 1f);
         direction.y = Random.Range(0, 1f);
         direction.z = Random.Range(0, 1f);
-
-        direction =  direction.normalized;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -45,8 +43,8 @@ public class Ball : MonoBehaviour
     //충돌 반사 방향 계산
     private Vector3 CalculateReflectDirection(Vector3 _collisionNormalVecter)
     {
-        Vector3 nowDir = rb.velocity.normalized;
-        Vector3 reflectDir = Vector3.Reflect(nowDir, _collisionNormalVecter).normalized;
+        Vector3 nowDir = rb.velocity;
+        Vector3 reflectDir = Vector3.Reflect(nowDir, _collisionNormalVecter);
         return reflectDir;
     }
 }

@@ -31,18 +31,50 @@ public class UIScene_Main : UIScene
         BindEvent(GetButton((int)Buttons.Button_Skill).gameObject, OnClick_Skill);
         BindEvent(GetButton((int)Buttons.Button_Soul).gameObject, OnClick_Soul);
         BindEvent(GetButton((int)Buttons.Button_SquareUpgrade).gameObject, OnClick_SquareUpgrade);
+        BindEvent(GetButton((int)Buttons.Button_BallDamageUpgrade).gameObject, Managers.Game.upgrade.BallDamageUpgrade);
+        BindEvent(GetButton((int)Buttons.Button_BallSpeedUpgrade).gameObject, Managers.Game.upgrade.BallSpeedUpgrade);
+        BindEvent(GetButton((int)Buttons.Button_BallCountUpgrade).gameObject, Managers.Game.upgrade.BallCountUpgrade);
+        BindEvent(GetButton((int)Buttons.Button_BallCriticalUpgrade).gameObject, Managers.Game.upgrade.BallCriticalUpgrade);
 
         CloseAllBundle();
         Managers.UI.SceneUI = this;
+        RedrawUI();
         return true;
+    }
+
+    public override void RedrawUI()
+    {
+        GetText((int)Texts.Text_Gold).text = Managers.Game.player.inGameGoldString;
+        GetText((int)Texts.Text_Cash).text = $"{Managers.Game.player.cash}";
+        GetText((int)Texts.Text_Level).text = $"Level {Managers.Game.world.worldLevel}";
+
+        //데미지
+        GetText((int)Texts.Text_BallDamageLevel).text = $"Level {Managers.Game.player.ballDamageLevel}";
+        GetText((int)Texts.Text_BallNowDamage).text = $"{Util.FloatToSymbolString(Managers.Game.player.currentBallDamage)}";
+        GetText((int)Texts.Text_BallUpgradeDamage).text = $"{Util.FloatToSymbolString(Managers.Game.player.afterBallDamage)}";
+        GetText((int)Texts.Text_BallDamageUpgradeCost).text = $"{Util.FloatToSymbolString(Managers.Game.upgrade.currentBallDamageUpgradeCost)}";
+
+        //스피드
+        GetText((int)Texts.Text_BallSpeedLevel).text = $"Level {Managers.Game.player.ballSpeedLevel}";
+        GetText((int)Texts.Text_BallNowSpeed).text = $"{Util.FloatToSymbolString(Managers.Game.player.currentBallSpeed)}";
+        GetText((int)Texts.Text_BallUpgradeSpeed).text = $"{Util.FloatToSymbolString(Managers.Game.player.afterBallSpeed)}";
+        GetText((int)Texts.Text_BallSpeedUpgradeCost).text = $"{Util.FloatToSymbolString(Managers.Game.upgrade.currentBallSpeedUpgradeCost)}";
+
+        //카운트
+        GetText((int)Texts.Text_BallCountLevel).text = $"Level {Managers.Game.player.ballCountLevel}";
+        GetText((int)Texts.Text_BallNowCount).text = $"{Util.FloatToSymbolString(Managers.Game.player.ballCount)}";
+        GetText((int)Texts.Text_BallUpgradeCount).text = $"{Util.FloatToSymbolString(Managers.Game.player.ballCount + 1)}";
+        GetText((int)Texts.Text_BallCountUpgradeCost).text = $"{Util.FloatToSymbolString(Managers.Game.upgrade.currentBallCountUpgradeCost)}";
+
+        //크리티컬
+        GetText((int)Texts.Text_BallCriticalLevel).text = $"Level {Managers.Game.player.ballCriticalLevel}";
+        GetText((int)Texts.Text_BallNowCritical).text = $"{Util.FloatToSymbolString(Managers.Game.player.ballCritical)}";
+        GetText((int)Texts.Text_BallUpgradeCritical).text = $"{Util.FloatToSymbolString(Managers.Game.player.ballCritical + 0.05f)}";
+        GetText((int)Texts.Text_BallCriticalUpgradeCost).text = $"{Util.FloatToSymbolString(Managers.Game.upgrade.currentBallCriticalUpgradeCost)}";
     }
 
     #region Swipe
 
-    public override void RedrawUI()
-    {
-        GetText((int)Texts.Text_Gold).text = $"{Managers.Game.player.gold} Gold";
-    }
 
     public void BeginDrag(PointerEventData _data)
     {
@@ -218,12 +250,18 @@ public class UIScene_Main : UIScene
 
     public enum Texts
     {
-        Text_Gold
+        Text_Gold, Text_Cash, Text_Level,
+        Text_BallNowDamage, Text_BallDamageLevel, Text_BallUpgradeDamage, Text_BallDamageUpgradeCost,
+        Text_BallNowSpeed, Text_BallSpeedLevel, Text_BallUpgradeSpeed, Text_BallSpeedUpgradeCost,
+        Text_BallCountLevel, Text_BallNowCount, Text_BallUpgradeCount, Text_BallCountUpgradeCost,
+        Text_BallNowCritical, Text_BallCriticalLevel, Text_BallUpgradeCritical, Text_BallCriticalUpgradeCost
+
     }
 
     public enum Buttons
     {
-        Button_BallUpgrade, Button_Shop, Button_Skill, Button_Soul, Button_SquareUpgrade
+        Button_BallUpgrade, Button_Shop, Button_Skill, Button_Soul, Button_SquareUpgrade, Button_Setting, Button_Mission,
+        Button_BallDamageUpgrade , Button_BallSpeedUpgrade, Button_BallCountUpgrade, Button_BallCriticalUpgrade
     }
 
     public enum Objects

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static Define;
 
 public class BallManager
 {
@@ -45,5 +46,12 @@ public class BallManager
         ball.transform.position = Managers.Grid.EnGridRandomEmptyGrid(null);
         balls[_ballType].Add(ball);
         ball.Init(Managers.Game.player.ballSpeeds[_ballType]);
+    }
+
+    public int GetBallCount(Define.BallType _ballType)
+    {
+        if (!balls.ContainsKey(_ballType))
+            balls.Add(_ballType, new HashSet<Ball>());
+        return balls[_ballType].Count;
     }
 }

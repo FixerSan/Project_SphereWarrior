@@ -82,4 +82,53 @@ public static class Util
             _spriteRenderer.color -= new Color(0, 0, 0, _spriteRenderer.color.a - Time.deltaTime);
         }
     }
+
+    public static string IntToSymbolString(int _int)
+    {
+        string symbolString;
+
+        if (_int > 1000000000000000f) symbolString = $"{Mathf.Floor(_int / 1000000000000000f * 100) / 100}P";
+
+        else if (_int > 1000000000000f) symbolString = $"{Mathf.Floor(_int / 1000000000000 * 100) / 100}T";
+
+        else if (_int > 1000000000f) symbolString = $"{Mathf.Floor(_int / 1000000000f * 100) / 100}G";
+
+        else if (_int > 1000000f) symbolString = $"{Mathf.Floor(_int / 1000000f * 100) / 100}M";
+
+        else if (_int > 1000f) symbolString = $"{Mathf.Floor(_int / 1000f * 100) / 100}K";
+
+        else symbolString = $"{Mathf.Floor(_int)}";
+
+
+        return symbolString;
+    }
+
+    public static string FloatToSymbolString(float _float)
+    {
+        string symbolString;
+
+        if (_float > 1000000000000000f) symbolString = $"{Mathf.Floor(_float / 1000000000000000f * 100) / 100}P";
+
+        else if (_float > 1000000000000f) symbolString = $"{Mathf.Floor(_float / 1000000000000 * 100) / 100}T";
+
+        else if (_float > 1000000000f) symbolString = $"{Mathf.Floor(_float / 1000000000f * 100) / 100}G";
+
+        else if (_float > 1000000f) symbolString = $"{Mathf.Floor(_float / 1000000f * 100) / 100}M";
+
+        else if (_float > 1000f) symbolString = $"{Mathf.Floor(_float / 1000f * 100) / 100}K";
+
+        else symbolString = $"{Mathf.Floor(_float)}";
+
+
+        return symbolString;
+    }
+
+    public static float CriticalCheck(float _damage)
+    {
+        int randomInt = UnityEngine.Random.Range(1, 101);
+        if(randomInt > 50)
+            _damage = _damage * Managers.Game.player.ballCritical;
+
+        return _damage;
+    }
 }

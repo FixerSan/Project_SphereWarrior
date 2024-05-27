@@ -23,7 +23,7 @@ public abstract class UIBase : MonoBehaviour
         return true;
     }
 
-    private void Awake()
+    private void Start()
     {
         Init();
     }
