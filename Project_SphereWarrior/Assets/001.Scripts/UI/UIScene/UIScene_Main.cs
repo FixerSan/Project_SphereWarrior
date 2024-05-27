@@ -68,8 +68,8 @@ public class UIScene_Main : UIScene
 
         //크리티컬
         GetText((int)Texts.Text_BallCriticalLevel).text = $"Level {Managers.Game.player.ballCriticalLevel}";
-        GetText((int)Texts.Text_BallNowCritical).text = $"{Util.FloatToSymbolString(Managers.Game.player.ballCritical)}";
-        GetText((int)Texts.Text_BallUpgradeCritical).text = $"{Util.FloatToSymbolString(Managers.Game.player.ballCritical + 0.05f)}";
+        GetText((int)Texts.Text_BallNowCritical).text = $"{Managers.Game.player.ballCritical}";
+        GetText((int)Texts.Text_BallUpgradeCritical).text = $"{Managers.Game.player.ballCritical + 0.05f}";
         GetText((int)Texts.Text_BallCriticalUpgradeCost).text = $"{Util.FloatToSymbolString(Managers.Game.upgrade.currentBallCriticalUpgradeCost)}";
     }
 
