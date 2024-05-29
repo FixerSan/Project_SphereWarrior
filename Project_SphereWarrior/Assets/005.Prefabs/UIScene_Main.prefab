@@ -990,7 +990,7 @@ GameObject:
   - component: {fileID: 5975833782855788141}
   - component: {fileID: 4617004307872700523}
   m_Layer: 5
-  m_Name: Text_BallTestLevel
+  m_Name: Text_BallCriticalPercentageLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5118,7 +5118,7 @@ GameObject:
   - component: {fileID: 5414609573959225897}
   - component: {fileID: 7303701700559171267}
   m_Layer: 5
-  m_Name: Button_BallTestUpgrade
+  m_Name: Button_BallCriticalPercentageUpgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5906,7 +5906,7 @@ GameObject:
   - component: {fileID: 866274894131142553}
   - component: {fileID: 4115082962022519155}
   m_Layer: 5
-  m_Name: Text_BallUpgradeTest
+  m_Name: Text_BallUpgradeCriticalPercentage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6487,7 +6487,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ball Critical
+  m_text: 'Ball CriticalPercentage
 
 '
   m_isRightToLeft: 0
@@ -8425,7 +8425,7 @@ GameObject:
   - component: {fileID: 840555165112150336}
   - component: {fileID: 5749396759353898836}
   m_Layer: 5
-  m_Name: Text_BallNowTest
+  m_Name: Text_BallNowCriticalPercentage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8634,7 +8634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1756442138485078546}
   m_Layer: 5
-  m_Name: Bundle_BallTestUpgrade
+  m_Name: Bundle_BallCriticalPercentageUpgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9576,7 +9576,7 @@ GameObject:
   - component: {fileID: 3728061425914473239}
   - component: {fileID: 4345808966907185966}
   m_Layer: 5
-  m_Name: Text_BallTestUpgradeCost
+  m_Name: Text_BallCriticalPercentageUpgradeCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

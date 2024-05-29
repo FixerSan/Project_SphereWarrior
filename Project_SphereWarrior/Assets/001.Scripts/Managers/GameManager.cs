@@ -109,7 +109,8 @@ public class Player
     public int ballDamageLevel = 1;
     public int ballSpeedLevel = 1;
     public int ballCountLevel = 1;
-    public int ballCriticalLevel = 1;
+    public int ballCriticalDamageLevel = 1;
+    public int ballCriticalPercentageLevel = 1;
 
     //볼 데미지
     public float beforeBallDamage;
@@ -122,7 +123,8 @@ public class Player
     public float afterBallSpeed;
 
     //볼 크리티컬
-    public float ballCritical;
+    public float ballCriticalDamage;
+    public int ballCriticalPercentage;
 
     //볼 갯수
     public int ballCount;
@@ -139,7 +141,8 @@ public class Player
         currentBallSpeed = 1;
         afterBallSpeed = 2;
 
-        ballCritical = 1.5f;
+        ballCriticalDamage = 1.5f;
+        ballCriticalPercentage = 30;
         ballCount = 1;
 
         ballSpeeds.Add(Define.BallType.Default, 3);
@@ -238,8 +241,10 @@ public class UpgradeSystem
 
 
     //볼 크리티컬
-    private float beforeBallCiriticalUpgradeCost = 10f;
-    public float currentBallCriticalUpgradeCost = 20f;
+    private float beforeBallCiriticalDamageUpgradeCost = 10f;
+    public float currentBallCriticalDamgeUpgradeCost = 20f;
+    private float beforeBallCriticalPercentageUpgradeCost = 10f;
+    public float currentBallCriticalPercentageUpgradeCost = 20f;
 
     //볼 데미지 업그레이드
     public void BallDamageUpgrade()
@@ -290,21 +295,21 @@ public class UpgradeSystem
     }
 
     //볼 크리티컬 업그레이드
-    public void BallCriticalUpgrade()
+    public void BallCriticalDamageUpgrade()
     {
-        if (Managers.Game.player.gold > currentBallCriticalUpgradeCost)
+        if (Managers.Game.player.gold > currentBallCriticalDamgeUpgradeCost)
         {
             //가격 차감
-            Managers.Game.RemoveGold(currentBallCriticalUpgradeCost);
+            Managers.Game.RemoveGold(currentBallCriticalDamgeUpgradeCost);
 
             //피보나치 가격 수정
-            tempFloat = beforeBallCiriticalUpgradeCost + currentBallCriticalUpgradeCost;
-            beforeBallCiriticalUpgradeCost = currentBallCriticalUpgradeCost;
-            currentBallCriticalUpgradeCost = tempFloat;
+            tempFloat = beforeBallCiriticalDamageUpgradeCost + currentBallCriticalDamgeUpgradeCost;
+            beforeBallCiriticalDamageUpgradeCost = currentBallCriticalDamgeUpgradeCost;
+            currentBallCriticalDamgeUpgradeCost = tempFloat;
 
             //업그레이드
-            Managers.Game.player.ballCriticalLevel++;
-            Managers.Game.player.ballCritical += 0.05f;
+            Managers.Game.player.ballCriticalDamageLevel++;
+            Managers.Game.player.ballCriticalDamage += 0.05f;
 
             Managers.UI.SceneUI?.RedrawUI();
         }
@@ -328,6 +333,28 @@ public class UpgradeSystem
             Managers.Game.player.ballCount += 1;
 
             Managers.Game.world.CheckBallCount();
+            Managers.UI.SceneUI?.RedrawUI();
+        }
+    }
+
+
+    //볼 크리티컬 확률 업그레이드
+    public void BallCriticalPercentageUpgrade()
+    {
+        if (Managers.Game.player.gold > currentBallCriticalPercentageUpgradeCost)
+        {
+            //가격 차감
+            Managers.Game.RemoveGold(currentBallCriticalPercentageUpgradeCost);
+
+            //피보나치 가격 수정
+            tempFloat = beforeBallCriticalPercentageUpgradeCost + currentBallCriticalPercentageUpgradeCost;
+            beforeBallCriticalPercentageUpgradeCost = currentBallCriticalPercentageUpgradeCost;
+            currentBallCriticalPercentageUpgradeCost = tempFloat;
+
+            //업그레이드
+            Managers.Game.player.ballCriticalPercentageLevel++;
+            Managers.Game.player.ballCriticalPercentage += 5;
+
             Managers.UI.SceneUI?.RedrawUI();
         }
     }

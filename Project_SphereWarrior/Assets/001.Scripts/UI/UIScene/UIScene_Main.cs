@@ -32,7 +32,8 @@ public class UIScene_Main : UIScene
         BindEvent(GetButton((int)Buttons.Button_BallDamageUpgrade).gameObject, Managers.Game.upgrade.BallDamageUpgrade);
         BindEvent(GetButton((int)Buttons.Button_BallSpeedUpgrade).gameObject, Managers.Game.upgrade.BallSpeedUpgrade);
         BindEvent(GetButton((int)Buttons.Button_BallCountUpgrade).gameObject, Managers.Game.upgrade.BallCountUpgrade);
-        BindEvent(GetButton((int)Buttons.Button_BallCriticalUpgrade).gameObject, Managers.Game.upgrade.BallCriticalUpgrade);
+        BindEvent(GetButton((int)Buttons.Button_BallCriticalUpgrade).gameObject, Managers.Game.upgrade.BallCriticalDamageUpgrade);
+        BindEvent(GetButton((int)Buttons.Button_BallCriticalPercentageUpgrade).gameObject, Managers.Game.upgrade.BallCriticalPercentageUpgrade);
 
         CloseAllBundle();
         Managers.UI.SceneUI = this;
@@ -64,11 +65,17 @@ public class UIScene_Main : UIScene
         GetText((int)Texts.Text_BallUpgradeCount).text = $"{Util.FloatToSymbolString(Managers.Game.player.ballCount + 1)}";
         GetText((int)Texts.Text_BallCountUpgradeCost).text = $"{Util.FloatToSymbolString(Managers.Game.upgrade.currentBallCountUpgradeCost)}";
 
-        //크리티컬
-        GetText((int)Texts.Text_BallCriticalLevel).text = $"Level {Managers.Game.player.ballCriticalLevel}";
-        GetText((int)Texts.Text_BallNowCritical).text = $"{Managers.Game.player.ballCritical}";
-        GetText((int)Texts.Text_BallUpgradeCritical).text = $"{Managers.Game.player.ballCritical + 0.05f}";
-        GetText((int)Texts.Text_BallCriticalUpgradeCost).text = $"{Util.FloatToSymbolString(Managers.Game.upgrade.currentBallCriticalUpgradeCost)}";
+        //크리티컬 데미지
+        GetText((int)Texts.Text_BallCriticalLevel).text = $"Level {Managers.Game.player.ballCriticalDamageLevel}";
+        GetText((int)Texts.Text_BallNowCritical).text = $"{Managers.Game.player.ballCriticalDamage}";
+        GetText((int)Texts.Text_BallUpgradeCritical).text = $"{Managers.Game.player.ballCriticalDamage + 0.05f}";
+        GetText((int)Texts.Text_BallCriticalUpgradeCost).text = $"{Util.FloatToSymbolString(Managers.Game.upgrade.currentBallCriticalDamgeUpgradeCost)}";
+
+        //크리티컬 퍼센테이지
+        GetText((int)Texts.Text_BallCriticalPercentageLevel).text = $"Level {Managers.Game.player.ballCriticalPercentageLevel}";
+        GetText((int)Texts.Text_BallNowCriticalPercentage).text = $"{Managers.Game.player.ballCriticalPercentage}";
+        GetText((int)Texts.Text_BallUpgradeCriticalPercentage).text = $"{Managers.Game.player.ballCriticalPercentage + 5f}";
+        GetText((int)Texts.Text_BallCriticalPercentageUpgradeCost).text = $"{Util.FloatToSymbolString(Managers.Game.upgrade.currentBallCriticalPercentageUpgradeCost)}";
     }
 
     #region Swipe
@@ -252,14 +259,15 @@ public class UIScene_Main : UIScene
         Text_BallNowDamage, Text_BallDamageLevel, Text_BallUpgradeDamage, Text_BallDamageUpgradeCost,
         Text_BallNowSpeed, Text_BallSpeedLevel, Text_BallUpgradeSpeed, Text_BallSpeedUpgradeCost,
         Text_BallCountLevel, Text_BallNowCount, Text_BallUpgradeCount, Text_BallCountUpgradeCost,
-        Text_BallNowCritical, Text_BallCriticalLevel, Text_BallUpgradeCritical, Text_BallCriticalUpgradeCost
+        Text_BallNowCritical, Text_BallCriticalLevel, Text_BallUpgradeCritical, Text_BallCriticalUpgradeCost,
+        Text_BallNowCriticalPercentage, Text_BallCriticalPercentageLevel, Text_BallUpgradeCriticalPercentage, Text_BallCriticalPercentageUpgradeCost,
 
     }
 
     public enum Buttons
     {
         Button_BallUpgrade, Button_Shop, Button_Skill, Button_Soul, Button_SquareUpgrade, Button_Setting, Button_Mission,
-        Button_BallDamageUpgrade , Button_BallSpeedUpgrade, Button_BallCountUpgrade, Button_BallCriticalUpgrade
+        Button_BallDamageUpgrade , Button_BallSpeedUpgrade, Button_BallCountUpgrade, Button_BallCriticalUpgrade, Button_BallCriticalPercentageUpgrade
     }
 
     public enum Objects
