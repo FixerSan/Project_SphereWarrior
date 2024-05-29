@@ -14,7 +14,7 @@ public abstract class Face
 
     public virtual void CollisionFaceEffect()
     {
-        Managers.Game.GetGold(Util.CriticalCheck(Managers.Game.player.currentBallDamage));
+        Managers.Game.GetGold(Util.CriticalCheck(Managers.Game.player.currentBallDamage, Managers.Game.player.ballCriticalPercentage));
     }
 }
 
