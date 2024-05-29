@@ -123,11 +123,11 @@ public static class Util
         return symbolString;
     }
 
-    public static float CriticalCheck(float _damage, int _percentage)
+    public static float CriticalCheck(float _damage)
     {
         int randomInt = UnityEngine.Random.Range(1, 101);
-        if(randomInt < _percentage)
-            _damage = _damage * Managers.Game.player.ballCriticalDamage;
+        if(randomInt > 50)
+            _damage = _damage * Managers.Game.player.ballCritical;
 
         return _damage;
     }

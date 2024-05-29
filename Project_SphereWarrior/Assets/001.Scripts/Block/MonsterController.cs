@@ -55,7 +55,7 @@ public class MonsterController : GridObject
     {
         if(collision.transform.CompareTag("Player"))
         {
-            Hit(Util.CriticalCheck(Managers.Game.player.currentBallDamage, Managers.Game.player.ballCriticalPercentage));
+            Hit(Util.CriticalCheck(Managers.Game.player.currentBallDamage));
         }
     }
 
